@@ -1,0 +1,22 @@
+
+<h1 class='text-center'>Create Account</h1>
+
+<div class="row">
+  <div class="col-md-6 offset-3">
+	<form id="new-account-form" action="<%= users_url %>" method="post">
+		<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+		<input class="form-control" type="text" id="name" name="user[name]" value="<%= @user.name %>" placeholder="name"> 
+		<br>
+		<input class="form-control" type="text" id="email" name="user[email]" value="<%= @user.email %>" placeholder="email"> 
+		<br>
+		<input class="form-control" type="password" id="password" name="user[password]" placeholder="password"> 
+		<br>
+		<input type="submit" class="btn btn-success" value="Create Account">
+	</form>
+	<br>
+	<p>Have an account already? <%= link_to "Login", login_url %></p> 
+	<%= link_to "Back to Index", root_url %>
+  </div>
+  
+</div>

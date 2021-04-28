@@ -1,0 +1,49 @@
+
+<h1 class="d-flex align-items-center justify-content-center">BillsPin	</h1>
+
+<h4> <%= link_to "Profile", user_url(@user), class:"btn btn-outline-info" %> 
+<h3>Add a Bill </h3>
+
+<form   id="new-bill-form" action="<%= bills_url %>" method="post">
+	
+<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+	<div>
+		<div class="col-3">
+			<input class="form-control" type="text" id="bill-name" name="bill[name]" value="<%= @bill.name %>" placeholder="Bill Name">
+		</div>
+		<br>	
+		<div class="col-3">
+			<textarea class="form-control" id="bill-description" name="bill[description]" value="<%= @bill.description %>" placeholder="Bill Description (optional)" rows="2"></textarea>
+		</div>
+		<br>
+		<div class="col-3">
+			<input class="form-control" type="number" id="bill-amount" name="bill[amount]" value="<%= @bill.amount %>" placeholder="Amount">
+		</div>
+	</div>
+	
+	<br>
+	
+
+	<button class="btn btn-info" id="split-evenly">Split Evenly</button>
+
+	
+	<br>
+	<br>
+	<input type="hidden" name="bill[guests][][name]" ><span class="label label-success"> You </span> paid <input type="number" name="bill[guests][][money_paid]" class="amount-paid" placeholder="Amount">.
+	<br>
+	You are splitting this bill evenly with:
+	<br>
+	<br>
+	<input type="text" class="guest-name" name="bill[guests][][name]" placeholder="Enter Friend Name"> paid <input type="number" name="bill[guests][][money_paid]" class="amount-paid" placeholder="Amount">
+	<br>
+	<br>
+	<button class="btn btn-primary add-friend">Add Another Friend</button> or <input type="submit" class="btn btn-success" id="add-bill" value="Add Bill">
+	<br>
+	<div id="guests-on-bill"></div>
+	<br>
+</form>
+    
+
+<div id="form-submit-messages"></div>
+

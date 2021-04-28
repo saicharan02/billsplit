@@ -1,0 +1,43 @@
+
+
+<h2>Bill #<%= @bill.id %> Details</h2>
+<br>
+Created by: <%= @bill.user.name.nil? ? "Guest User" : @bill.user.name %> on <%= @bill.created_at.to_time.strftime('%B %e at %l:%M %p') %>
+<br>
+Bill Name: <%= @bill.name %>
+<br>
+<% unless @bill.description.blank? %>
+	Bill Description: <%= @bill.description %>
+<% end %>
+<br>
+Bill Amount: $<%= sprintf( "%0.02f", @bill.amount) %>
+<br>
+<br>
+<br>
+<h4>Bill Splitted as</h4>
+<% @guests.each do |guest| %>
+	<%= guest.name %> paid $<%= sprintf( "%0.02f", guest.money_paid) %>. <%= guest.name %> should have paid $<%= sprintf( "%0.02f", guest.money_to_pay) %>.
+	<br>
+<% end %>
+<br>
+<h4>Debt Details</h4>
+<% @debts.each do |debt| %>
+	<%= debt.debtor_name %> <%= debt.debtor_name == "You" ? "owe" : "owes" %> <%= debt.creditor_name == "You" ? "you" : debt.creditor_name %> $<%= sprintf( "%0.02f", debt.amount) %>.
+	<br>
+<% end %>
+<br>
+<br>
+<div id="request-bill-confirmation">
+	<input type="email" id="confirmation-email-address" placeholder="email@example.com"><button id="send-bill-confirmation" data-id=<%= @bill.id %> class="btn btn-primary"> Send Confirmation Email </button>
+</div>
+<br>
+<br>
+<div id="email-status">
+</div>
+<br>
+
+<% if current_user.guest? %>
+	<p><%= link_to "Create Account", new_user_url %> to save this bill.</p>
+<% end %>
+
+<p><%= link_to "Back to the index", root_url %></p>

@@ -1,0 +1,17 @@
+<h1 class='text-center'>Log in</h1>
+
+<div class="row">
+  <div class="col-md-6 offset-3">
+	<form id="login-form" action="<%= sessions_url %>" method="post">
+		<input class="form-control" type="text" id="email" name="user[email]" placeholder="Email"/> 
+		<br>
+		<input class="form-control" type="password" id="password" name="user[password]" placeholder="Password" /> 
+		<br>
+		<input type="submit" class=" mt-2 btn btn-primary" value="Login" />
+	</form>
+  </div>
+</div>
+<br>
+<p  class='text-center' >Don't have an account? <%= link_to "Create Account", new_user_url %></p>
+
+<p  class='text-center'><%= link_to "Back to Index", root_url %></p>
